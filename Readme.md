@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Маша Иванова](https://up.htmlacademy.ru/ecmascript/7/user/510877).
-* Наставник: `Неизвестно`.
+* Наставник: Артем Черкасов.
 
 ---
 
