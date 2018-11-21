@@ -64,10 +64,14 @@ const firstGameTemplate = `
 const firstGameScreen = createScreen(firstGameTemplate);
 const firstGameForm = firstGameScreen.querySelector(`.game__content`);
 const buttonBack = firstGameScreen.querySelector(`.back`);
-// const questionNumber = firstGameScreen.querySelectorAll(`.game__option`).length;
+const questionNumber = firstGameScreen.querySelectorAll(`.game__option`).length;
+
 
 firstGameForm.addEventListener(`change`, () => {
-  renderScreen(secondGameScreen);
+  const checkedAnswers = Array.from(firstGameScreen.querySelectorAll(`input[type=radio]`)).filter((answer) => answer.checked);
+  if (checkedAnswers.length === questionNumber) {
+    renderScreen(secondGameScreen);
+  }
 });
 
 buttonBack.addEventListener(`click`, () => {
