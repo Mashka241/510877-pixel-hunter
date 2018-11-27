@@ -1,9 +1,17 @@
-// import {INITIAL_GAME, answerScore, createAnswer} from './game-data.js';
+import {answerScore} from './game-data.js';
 
-export const scorePoints = (answers) => {
+export const scorePoints = (answers, lives) => {
   let points = 0;
-  if (answers.length < 10) {
-    points = -1;
-  }
-  return points;
+  const bonus = lives * 50;
+  answers.forEach((answer) => {
+    if (answer.time < 10) {
+      points += answerScore.FAST;
+    } else if (answer.time >= 10 && answer.time < 20) {
+      points += answerScore.NORMAL;
+    } else if (answer.time > 20) {
+      points += answerScore.SLOW;
+    }
+  });
+  points += bonus;
+  return answers.length < 10 ? -1 : points;
 };
