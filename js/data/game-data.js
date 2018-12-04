@@ -33,8 +33,34 @@ export const createAnswer = (isCorrect, time) => {
 
 export const game1 = {
   task: `Угадайте для каждого изображения фото или рисунок?`,
-  imgQuantity: 2,
+  // imgQuantity: 2,
   imgData: [`https://k42.kn3.net/CF42609C8.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
+  gameContent() {
+    return `<form class="game__content">
+      <div class="game__option">
+      <img src="${this.imgData[0]}" alt="Option 1" width="468" height="458">
+      <label class="game__answer game__answer--photo">
+        <input class="visually-hidden" name="question1" type="radio" value="photo">
+        <span>Фото</span>
+      </label>
+      <label class="game__answer game__answer--paint">
+        <input class="visually-hidden" name="question1" type="radio" value="paint">
+        <span>Рисунок</span>
+      </label>
+    </div>
+    <div class="game__option">
+      <img src="${this.imgData[1]}" alt="Option 2" width="468" height="458">
+      <label class="game__answer  game__answer--photo">
+        <input class="visually-hidden" name="question2" type="radio" value="photo">
+        <span>Фото</span>
+      </label>
+      <label class="game__answer  game__answer--paint">x§
+        <input class="visually-hidden" name="question2" type="radio" value="paint">
+        <span>Рисунок</span>
+      </label>
+    </div>
+    </form>`;
+  },
   stats: [`wrong`, `slow`, `fast`, `correct`, ...new Array(6).fill(`unknown`)]
 };
 
