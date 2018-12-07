@@ -31,12 +31,142 @@ export const createAnswer = (isCorrect, time) => {
   return answer;
 };
 
+const stats = [...new Array(10).fill(`unknown`)];
+
+const gameData = [
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/CF42609C8.jpg`,
+      type: `photo`
+    }, {
+      url: `http://i.imgur.com/1KegWPz.jpg`,
+      type: `paint`
+    }],
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/CF42609C8.jpg`,
+      type: `photo`
+    }, {
+      url: `http://i.imgur.com/1KegWPz.jpg`,
+      type: `paint`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/D2F0370D6.jpg`,
+      type: `photo`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k32.kn3.net/5C7060EC5.jpg`,
+      type: `photo`
+    }, {
+      url: `https://i.imgur.com/DiHM5Zb.jpg`,
+      type: `paint`
+    }, {
+      url: `http://i.imgur.com/DKR1HtB.jpg`,
+      type: `paint`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/D2F0370D6.jpg`,
+      type: `photo`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/CF42609C8.jpg`,
+      type: `photo`
+    }, {
+      url: `http://i.imgur.com/1KegWPz.jpg`,
+      type: `paint`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k32.kn3.net/5C7060EC5.jpg`,
+      type: `photo`
+    }, {
+      url: `https://i.imgur.com/DiHM5Zb.jpg`,
+      type: `paint`
+    }, {
+      url: `http://i.imgur.com/DKR1HtB.jpg`,
+      type: `paint`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/CF42609C8.jpg`,
+      type: `photo`
+    }, {
+      url: `http://i.imgur.com/1KegWPz.jpg`,
+      type: `paint`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/D2F0370D6.jpg`,
+      type: `photo`
+    }]
+  },
+
+  {
+    imgData: [{
+      url: `https://k42.kn3.net/CF42609C8.jpg`,
+      type: `photo`
+    }, {
+      url: `http://i.imgur.com/1KegWPz.jpg`,
+      type: `paint`
+    }]
+  }
+];
+
+const gameType = {
+  createSingleImgTemplate(data) {
+    const task = `Угадайте для каждого изображения фото или рисунок?`;
+    const gameContent = `<form class="game__content">
+    ${data.map((img, index) => {
+    return `<div class="game__option">
+      <img src="${img.url}" alt="Option 1" width="468" height="458">
+      <label class="game__answer game__answer--photo">
+        <input class="visually-hidden" name="question${index + 1}" type="radio" value="photo">
+        <span>Фото</span>
+      </label>
+      <label class="game__answer game__answer--paint">
+        <input class="visually-hidden" name="question${index + 1}" type="radio" value="paint">
+        <span>Рисунок</span>
+      </label>
+  </div>`;
+  })}
+    </form>`;
+    return gameContent;
+  },
+  doubleImg: {
+    task: `Угадайте для каждого изображения фото или рисунок?`,
+  },
+  tripleImg: {
+    task: `Найдите рисунок среди изображений`,
+  }
+};
+
+
 export const game1 = {
   task: `Угадайте для каждого изображения фото или рисунок?`,
-  imgData: [`https://k42.kn3.net/CF42609C8.jpg`, `http://i.imgur.com/1KegWPz.jpg`],
   gameContent() {
     const content = `<form class="game__content">
-    ${this.imgData.map((img, index) => {
+
+    ${data.imgData.map((img, index) => {
     return `<div class="game__option">
       <img src="${img}" alt="Option 1" width="468" height="458">
       <label class="game__answer game__answer--photo">
@@ -49,15 +179,14 @@ export const game1 = {
       </label>
   </div>`;
   })}
+
     </form>`;
     return content;
-  },
-  stats: [`wrong`, `slow`, `fast`, `correct`, ...new Array(6).fill(`unknown`)]
+  }
 };
 
 export const game2 = {
   task: `Угадай, фото или рисунок?`,
-  imgData: [`https://k42.kn3.net/D2F0370D6.jpg`],
   gameContent() {
     const content = `<form class="game__content  game__content--wide">
     <div class="game__option">
@@ -73,13 +202,11 @@ export const game2 = {
     </div>
 </form>`;
     return content;
-  },
-  stats: [`wrong`, `slow`, `fast`, `correct`, `wrong`, `unknown`, `slow`, `unknown`, `fast`, `unknown`]
+  }
 };
 
 export const game3 = {
   task: `Найдите рисунок среди изображений`,
-  imgData: [`https://k32.kn3.net/5C7060EC5.jpg`, `https://i.imgur.com/DiHM5Zb.jpg`, `http://i.imgur.com/DKR1HtB.jpg`],
   gameContent() {
     const content = `<form class="game__content  game__content--triple">
     <div class="game__option">
@@ -93,6 +220,5 @@ export const game3 = {
     </div>
   </form>`;
     return content;
-  },
-  stats: [`wrong`, `slow`, `fast`, `correct`, `wrong`, `unknown`, `slow`, `unknown`, `fast`, `unknown`]
+  }
 };
