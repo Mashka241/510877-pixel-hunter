@@ -1,5 +1,5 @@
 export const INITIAL_GAME = Object.freeze({
-  level: 0,
+  level: null,
   lives: 3,
   time: 0
 });
@@ -31,9 +31,9 @@ export const createAnswer = (isCorrect, time) => {
   return answer;
 };
 
-const stats = [...new Array(10).fill(`unknown`)];
+export const stats = [...new Array(10).fill(`unknown`)];
 
-const gameData = [
+export const levels = [
   {
     imgData: [{
       url: `https://k42.kn3.net/CF42609C8.jpg`,
@@ -132,43 +132,14 @@ const gameData = [
   }
 ];
 
-const gameType = {
-  createSingleImgTemplate(data) {
-    const task = `Угадайте для каждого изображения фото или рисунок?`;
-    const gameContent = `<form class="game__content">
-    ${data.map((img, index) => {
-    return `<div class="game__option">
-      <img src="${img.url}" alt="Option 1" width="468" height="458">
-      <label class="game__answer game__answer--photo">
-        <input class="visually-hidden" name="question${index + 1}" type="radio" value="photo">
-        <span>Фото</span>
-      </label>
-      <label class="game__answer game__answer--paint">
-        <input class="visually-hidden" name="question${index + 1}" type="radio" value="paint">
-        <span>Рисунок</span>
-      </label>
-  </div>`;
-  })}
-    </form>`;
-    return gameContent;
-  },
-  doubleImg: {
-    task: `Угадайте для каждого изображения фото или рисунок?`,
-  },
-  tripleImg: {
-    task: `Найдите рисунок среди изображений`,
-  }
-};
-
-
-export const game1 = {
+export const gameScreen1 = {
   task: `Угадайте для каждого изображения фото или рисунок?`,
-  gameContent() {
+  gameContent(level) {
     const content = `<form class="game__content">
 
-    ${data.imgData.map((img, index) => {
+    ${level.imgData.map((img, index) => {
     return `<div class="game__option">
-      <img src="${img}" alt="Option 1" width="468" height="458">
+      <img src="${img.url}" alt="Option 1" width="468" height="458">
       <label class="game__answer game__answer--photo">
         <input class="visually-hidden" name="question${index + 1}" type="radio" value="photo">
         <span>Фото</span>
@@ -185,12 +156,12 @@ export const game1 = {
   }
 };
 
-export const game2 = {
+export const gameScreen2 = {
   task: `Угадай, фото или рисунок?`,
-  gameContent() {
+  gameContent(level) {
     const content = `<form class="game__content  game__content--wide">
     <div class="game__option">
-      <img src="${this.imgData[0]}" alt="Option 1" width="705" height="455">
+      <img src="${level.imgData.url}" alt="Option 1" width="705" height="455">
       <label class="game__answer  game__answer--photo">
         <input class="visually-hidden" name="question1" type="radio" value="photo">
         <span>Фото</span>

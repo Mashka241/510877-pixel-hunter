@@ -1,7 +1,8 @@
 import createScreen from './create-screen.js';
 import renderScreen from './render-screen.js';
-import firstGameScreen from './game-1.js';
-import greetingScreen from './greeting.js';
+import renderFirstGameLevel from './game-1.js';
+// import greetingScreen from './greeting.js';
+import {INITIAL_GAME, levels, stats} from './data/game-data.js';
 
 const rulesTemplate = `
 <header class="header">
@@ -42,7 +43,11 @@ rulesInput.addEventListener(`input`, () => {
 });
 
 rulesSubmitButton.addEventListener(`click`, () => {
-  renderScreen(firstGameScreen);
+  const game = Object.assign({}, INITIAL_GAME);
+  game.level = levels[0];
+
+  const screen = renderFirstGameLevel(game, stats);
+  renderScreen(screen);
 });
 
 buttonBack.addEventListener(`click`, () => {
