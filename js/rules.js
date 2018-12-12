@@ -1,7 +1,7 @@
 import createScreen from './create-screen.js';
 import renderScreen from './render-screen.js';
 import renderFirstGameLevel from './game-1.js';
-// import greetingScreen from './greeting.js';
+import greetingScreen from './greeting.js';
 import {INITIAL_GAME, levels, stats} from './data/game-data.js';
 
 const rulesTemplate = `

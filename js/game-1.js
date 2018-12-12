@@ -1,14 +1,14 @@
 import createScreen from './create-screen.js';
 import renderScreen from './render-screen.js';
-// import secondGameScreen from './game-2.js';
+import secondGameScreen from './game-2.js';
 import greetingScreen from './greeting.js';
 import headerTemplate from './header.js';
 import gameTemplate from './game.js';
-import {INITIAL_GAME, game1} from './data/game-data';
+import {INITIAL_GAME, gameScreen1} from './data/game-data';
 
 const renderFirstGameLevel = (game, stats) => {
   const firstGameTemplate = `${headerTemplate(game)}
-  ${gameTemplate(game1, game.level, stats)}`;
+  ${gameTemplate(gameScreen1, game.level, stats)}`;
 
   const firstGameScreen = createScreen(firstGameTemplate);
   const firstGameForm = firstGameScreen.querySelector(`.game__content`);
@@ -28,6 +28,6 @@ const renderFirstGameLevel = (game, stats) => {
   });
 
   return firstGameScreen;
-}
+};
 
 export default renderFirstGameLevel;
